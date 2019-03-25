@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cruid</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body style="background-image:url(&quot;assets/img/cruid.jpg&quot;);">
+    
+    <h1 style="margin-top:74px;margin-right:0px;margin-left:185px;">Cruid Functions</h1>
+    
+    <div th:switch="${users}">
+        <h2 th:case="null" style="margin-top:74px;margin-right:0px;margin-left:185px;" >No users yet!</h2>
+                <div th:case="*">
+    
+    <div class="table-responsive-xl" style="margin:40px;margin-top:103px;font-style:normal;color:#292c71;background-color:rgba(255,255,255,0.2);margin-right:74px;margin-left:27px;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td>
+                        <a th:href="@{/edit/{id}(id=${user.id})}" class="btn btn-success">Edit</a>
+                        <a th:href="@{/delete/{id}(id=${user.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                <tr></tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+        <p><a href="/add-user" class="btn btn-success">Add a new user</a></p>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
